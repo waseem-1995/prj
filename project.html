@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marriage Countdown</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20px;
+    position: relative;
+  }
+  
+  #countdown img {
+    width: 250px;
+    height: 350px;
+    border-radius: 10%;
+    margin: 20px;
+  }
+
+  #love-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: blink 1s infinite alternate;
+  }
+
+  @keyframes blink {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  #timer {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  #happy-wedding {
+    font-size: 34px;
+    font-weight: bold;
+    color: #fa1c1c;
+    margin-bottom: 20px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    #countdown img {
+      width: 250px;
+      height: 350px;
+    }
+    
+    #timer {
+      font-size: 18px;
+    }
+
+    #happy-wedding {
+      font-size: 18px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div id="countdown">
+  <div id="happy-wedding">Happy Wedding!</div>
+  <div>
+    <img src="https://i.ibb.co/Zmhbbz4/IMG-20240223-WA0006.jpg" alt="Couple Photo 1">
+    <div id="love-text">Weds</div>
+    <img src="https://i.ibb.co/1rRFwjv/IMG-20220225-WA0008.jpg" alt="Couple Photo 2">
+  </div>
+  <div id="timer"></div>
+</div>
+
+<script>
+  // Set the date of the marriage (year, month (0-11), day, hour, minute, second)
+  var weddingDate = new Date(2024, 10, 13, 9, 0, 0).getTime();
+
+  var countdown = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = weddingDate - now;
+
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.getElementById("timer").innerHTML = days + "days " + hours + "hours "
+    + minutes + "m " + seconds + "s ";
+
+    if (distance < 0) {
+      clearInterval(countdown);
+      document.getElementById("timer").innerHTML = "We are married!";
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
